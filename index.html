@@ -4,9 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Weather Dashboard</title>
 </head>
 <body>
-    
+    <header> 
+        <div class="header-text">
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div id="content" class="main-content justify-space-between"></div>
+            <div class="d-flex col-md-12">
+                <div id="search-for-city" class="col-md-3">
+                    <div class="search-text">
+                        <h2>Search for a City:</h2>
+                    </div>
+                    <input type="text" placeholder="Choose a city" class="form-input" id="form-input">
+                    <button type="submit" id="search-button" class="search-button"><i class="fas fa-search"></i></button>
+                    <div id="city-buttons"></div>
+                </div>
+                    <div id="current-weather" class=" current-weather  col-md-9">
+                        <h3>Current Weather</h3>
+                        <p id="city-date"></p>
+                        <p id="temp"></p>
+                        <p id="wind"></p>
+                        <p id="humidity"></p>
+                        <p id="uv"></p>
+                    </div>
+                </div>
+                <div id="5day" class="row ">
+                    <div class="col-md-12 ">
+                        <h3>5-Day Forecast </h3>
+                    </div>
+                </div>
+                <div class="row m-1 justify-content-end">
+                    <div id="day1" class="card col-md-2 bg-primary text-white m-1">day1</div>
+                    <div id="day2" class="card col-md-2 bg-primary text-white m-1">day2</div>
+                    <div id="day3" class="card col-md-2 bg-primary text-white m-1">day3</div>
+                    <div id="day4" class="card col-md-2 bg-primary text-white m-1">day4</div>
+                    <div id="day5" class="card col-md-2 bg-primary text-white m-1">day5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="./assets/script.js"></script>
 </body>
 </html>
