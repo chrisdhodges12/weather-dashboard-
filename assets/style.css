@@ -48,6 +48,7 @@ header {
     color: white;
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 5px;
+    
 }
 .city-buttons:hover {
     background-color: rgba(0, 0, 0, 0.1);
