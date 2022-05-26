@@ -54,6 +54,12 @@ function checkWeather(currentCity) {
 
                 // var weatherIcon = (response.weather.icon);
                 currentCityEl.innerHTML = currentCity  +  " ("  + moment().format("MMM Do YY") + ")" ;
+                
+                var weatherIcon = document.createElement ("img");
+                weatherIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
+                weatherIcon.setAttribute("alt", "icon of current weather");
+                weatherIcon.setAttribute("class", "currentIcon");
+                currentWeatherEl.append(weatherIcon);
                 tempEl.innerHTML = "Temperature: " + Math.floor(data.main.temp) + " &deg;F";
                 windEl.innerHTML = "Wind: " + Math.floor(data.wind.speed) + " MPH";
                 humidityEl.innerHTML = "Humidity: " + (data.main.humidity) + "%";
@@ -92,15 +98,23 @@ function checkWeather(currentCity) {
                                         getFiveDays.innerHTML = "(" + moment().add(i + 1, "days").format("MM/DD") + ")";
                                         fiveDayEl[i].append(getFiveDays);
 
+                                        //display icon
+                                        var fiveDayIconEl = document.createElement("img");
+                                        fiveDayIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png");
+                                        fiveDayIconEl.setAttribute("alt", "icon of forecasted weather");
+                                        fiveDayEl[i].append(fiveDayIconEl);
+
                                         // display temps
                                         var fiveDayTempEl = document.createElement("p");
                                         fiveDayTempEl.innerHTML = "Temp: " + Math.floor(data.list[i].main.temp) + " &#176F";
                                         fiveDayEl[i].append(fiveDayTempEl);
-
+                                       
+                                        //display humidity
                                         var fiveDayHumidityEl = document.createElement("p");
-                                        fiveDayHumidityEl.innerHTML = "Humidity: " + (data.list[i].main.humidity) + " %";
+                                        fiveDayHumidityEl.innerHTML = "Humidity: " + (data.list[i].main.humidity) + "%";
                                         fiveDayEl[i].append(fiveDayHumidityEl);
 
+                                        //display wind speed
                                         var fiveDayWindEl = document.createElement("p");
                                         fiveDayWindEl.innerHTML = "Wind: " + Math.floor(data.list[i].wind.speed) + " MPH";
                                         fiveDayEl[i].append(fiveDayWindEl);
