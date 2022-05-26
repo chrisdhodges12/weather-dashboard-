@@ -7,6 +7,7 @@ var tempEl = document.getElementById("temp");
 var windEl = document.getElementById("wind");
 var humidityEl = document.getElementById("humidity");
 var uvEl = document.getElementById("uv")
+var fiveDayEl = document.querySelectorAll(".fiveDay");
 var cityHistory = JSON.parse(localStorage.getItem("city")) || [];
 
 
@@ -44,24 +45,22 @@ function checkWeather(currentCity) {
     var currentCity= "Durham";
     var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + apiKey + "&units=imperial";
     console.log (weatherUrl);
-    
-
 
 
     fetch (weatherUrl).then(function (response){
         if (response.ok) {
             response.json().then (function(data) {
-                
+
 
                 // var weatherIcon = (response.weather.icon);
                 currentCityEl.innerHTML = currentCity  +  " ("  + moment().format("MMM Do YY") + ")" ;
                 tempEl.innerHTML = "Temperature: " + Math.floor(data.main.temp) + " &deg;F";
-                windEl.innerHTML = "Wind: " + (data.wind.speed) + " MPH";
+                windEl.innerHTML = "Wind: " + Math.floor(data.wind.speed) + " MPH";
                 humidityEl.innerHTML = "Humidity: " + (data.main.humidity) + "%";
 
                 var lat = data.coord.lat;
                 var lon = data.coord.lon;
-                var uvUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+                var uvUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey ;
                 console.log (uvUrl)
                 fetch (uvUrl).then(function (response){
                     if (response.ok) {
@@ -75,7 +74,40 @@ function checkWeather(currentCity) {
                             else {
                                 uvEl.setAttribute("class", "badge badge-danger");
                             }
-                            uvEl.innerHTML = "UV index: " + (data.current.uvi);  
+                            uvEl.innerHTML = "UV index: " + (data.current.uvi);
+                        })
+
+                        var cityID = (data.id)
+                        console.log (cityID)
+                        var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + apiKey + "&units=imperial";
+                        console.log(fiveDayUrl)
+                        fetch (fiveDayUrl).then (function(response) {
+                            if (response.ok) {
+                                response.json().then(function(data) {
+
+                                    //iterate through 5 days of weather
+                                    for (i = 0; i < fiveDayEl.length; i++)  {
+                                        //display dates
+                                        var getFiveDays = document.createElement ("h4");
+                                        getFiveDays.innerHTML = "(" + moment().add(i + 1, "days").format("MM/DD") + ")";
+                                        fiveDayEl[i].append(getFiveDays);
+
+                                        // display temps
+                                        var fiveDayTempEl = document.createElement("p");
+                                        fiveDayTempEl.innerHTML = "Temp: " + Math.floor(data.list[i].main.temp) + " &#176F";
+                                        fiveDayEl[i].append(fiveDayTempEl);
+
+                                        var fiveDayHumidityEl = document.createElement("p");
+                                        fiveDayHumidityEl.innerHTML = "Humidity: " + (data.list[i].main.humidity) + " %";
+                                        fiveDayEl[i].append(fiveDayHumidityEl);
+
+                                        var fiveDayWindEl = document.createElement("p");
+                                        fiveDayWindEl.innerHTML = "Wind: " + Math.floor(data.list[i].wind.speed) + " MPH";
+                                        fiveDayEl[i].append(fiveDayWindEl);
+
+                                    }
+                                })
+                            }
                         })
                     }
                 })
