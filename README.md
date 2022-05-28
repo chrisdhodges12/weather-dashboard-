@@ -24,7 +24,7 @@ https://chrisdhodges12.github.io/weather-dashboard-/
 
 
 
-<img src="assets/images/screenshot2.jpg" width="700px" height="500px">
+<img src="assets/images/screenshot1.jpg" width="700px" height="500px">
 
 
 
