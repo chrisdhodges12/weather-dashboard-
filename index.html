@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Weather Dashboard</title>
 </head>
 <body>
-    
+    <header>
+        <div class="header-text">
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div id="content" class="main-content justify-space-between"></div>
+            <div class="d-flex col-md-12">
+                <div id="search-for-city" class="col-md-3">
+                    <div class="search-text">
+                        <h2>Search for a City:</h2>
+                    </div>
+                    <input type="text" placeholder="Choose a city" class="form-input" id="form-input">
+                    <button type="button" id="search-button" class="search-button"><i class="fas fa-search"></i></button>
+                    <div class = "m-2 justify-content-center" id="city-buttons"></div>
+                    
+                </div>
+                    <div id="current-weather" class=" current-weather m-0 col-sm-9">
+                        <h3 id="current-city"></h3>
+                        <p id="temp"></p>
+                        <p id="wind"></p>
+                        <p id="humidity"></p>
+                        <p id="uv"></p>
+                    </div>
+                </div>
+                <div id="5day" class="row ">
+                    <div class="m-3 row ">
+                        <h3 class= "five-day-title" >5-Day Forecast </h3>
+                    </div>
+                </div>
+                <div class="five-day-cards row m-1 justify-content-center">
+                    <div class="fiveDay card col-sm-6 col-md-2 bg-primary text-white m-2"></div>
+                    <div class="fiveDay card col-sm-6 col-md-2 bg-primary text-white m-2"></div>
+                    <div class="fiveDay card col-sm-6 col-md-2 bg-primary text-white m-2"></div>
+                    <div class="fiveDay card col-sm-6 col-md-2 bg-primary text-white m-2"></div>
+                    <div class="fiveDay card col-sm-6 col-md-2 bg-primary text-white m-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
